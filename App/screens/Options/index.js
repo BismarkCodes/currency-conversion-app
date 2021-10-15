@@ -1,49 +1,47 @@
 import React from "react";
-import {
-  SafeAreaView,
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
+import { Alert, Linking, SafeAreaView, ScrollView } from "react-native";
 import colors from "../../constants/colors";
 import { Entypo } from "@expo/vector-icons";
-import RowItems from "../../components/RowItems";
+import { RowItems, RowSeperator } from "../../components/RowItems";
 
+// linking items to browser
+const openUrl = (url) => {
+  Linking.openURL(url).catch(() => {
+    Alert.alert("Sorry, something went wrong.", "Please try again later");
+  });
+};
 export default () => {
   return (
     <SafeAreaView>
-      <RowItems
-        text="Themes"
-        rightIcon={
-          <Entypo name="chevron-right" size={20} color={colors.blue} />
-        }
-        onPress={() => alert("Themes")}
-      />
+      <ScrollView>
+        <RowItems
+          text="Themes"
+          rightIcon={
+            <Entypo name="chevron-right" size={20} color={colors.blue} />
+          }
+          onPress={() => alert("Themes")}
+        />
 
-      <View style={styles.seperator}></View>
+        <RowSeperator />
 
-      <RowItems
-        text="React native basics"
-        rightIcon={<Entypo name="export" size={20} color={colors.blue} />}
-        onPress={() => alert("React native basics")}
-      />
+        <RowItems
+          text="React native basics"
+          rightIcon={<Entypo name="export" size={20} color={colors.blue} />}
+          onPress={() =>
+            openUrl(
+              "https://learn.reactnativeschool.com/courses/175915/lectures/17152196"
+            )
+          }
+        />
 
-      <View style={styles.seperator}></View>
+        <RowSeperator />
 
-      <RowItems
-        text="React native by example"
-        rightIcon={<Entypo name="export" size={20} color={colors.blue} />}
-        onPress={() => alert("Examples")}
-      />
+        <RowItems
+          text="React native by example"
+          rightIcon={<Entypo name="export" size={20} color={colors.blue} />}
+          onPress={() => openUrl("https://google.com")}
+        />
+      </ScrollView>
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  seperator: {
-    backgroundColor: colors.borderColor,
-    height: StyleSheet.hairlineWidth,
-    marginHorizontal: 20,
-  },
-});
