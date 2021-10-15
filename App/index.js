@@ -4,7 +4,7 @@ import Options from "./screens/Options/index";
 
 export default () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <Options />
     </SafeAreaView>
   );
@@ -12,9 +12,6 @@ export default () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    marginTop: 50,
   },
 });
