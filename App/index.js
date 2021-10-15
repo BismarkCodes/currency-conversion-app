@@ -1,13 +1,9 @@
 import React from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
-import Options from "./screens/Options/index";
+import Home from "./screens/Home";
 
 export default () => {
-  return (
-    <SafeAreaView style={styles.container}>
-      <Options />
-    </SafeAreaView>
-  );
+  return <Home />;
 };
 
 const styles = StyleSheet.create({
