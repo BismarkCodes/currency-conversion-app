@@ -31,6 +31,7 @@ const Home = () => {
         text="GBP"
         onPress={() => Alert.alert("todo", "GBP VALUE")}
         onChangeText={(value) => console.log(value)}
+        editable={false}
       />
     </View>
   );
