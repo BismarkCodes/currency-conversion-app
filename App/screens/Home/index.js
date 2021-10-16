@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import React from "react";
 import { Alert, Image, StatusBar, StyleSheet, Text, View } from "react-native";
+import { Button } from "../../components/Button";
 import { ConversionInput } from "../../components/ConversionInput";
 import colors from "../../constants/colors";
 import * as MyDimensions from "../../constants/Dimensions";
@@ -47,6 +48,8 @@ const Home = () => {
           "MMMM do, yyyy"
         )}`}
       </Text>
+      {/* Reverse currency button component */}
+      <Button text="Reverse currency" onPress={() => Alert.alert("Todo")} />
     </View>
   );
 };
