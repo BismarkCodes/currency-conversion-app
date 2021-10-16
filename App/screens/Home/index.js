@@ -1,5 +1,6 @@
 import React from "react";
-import { Image, StatusBar, StyleSheet, Text, View } from "react-native";
+import { Alert, Image, StatusBar, StyleSheet, Text, View } from "react-native";
+import { ConversionInput } from "../../components/ConversionInput";
 import colors from "../../constants/colors";
 import * as MyDimensions from "../../constants/Dimensions";
 
@@ -20,6 +21,17 @@ const Home = () => {
           style={styles.logo}
         />
       </View>
+      {/* Conversion inputs */}
+      <ConversionInput
+        text="USD"
+        onPress={() => Alert.alert("todo", "USD VALUE")}
+        onChangeText={(value) => console.log(value)}
+      />
+      <ConversionInput
+        text="GBP"
+        onPress={() => Alert.alert("todo", "GBP VALUE")}
+        onChangeText={(value) => console.log(value)}
+      />
     </View>
   );
 };
@@ -32,9 +44,9 @@ const styles = StyleSheet.create({
     height: MyDimensions.ScreenHeight,
     width: MyDimensions.ScreenWidth,
     backgroundColor: colors.blue,
+    justifyContent: "center",
   },
   logoContainer: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
