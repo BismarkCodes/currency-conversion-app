@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     flexDirection: "row",
     alignItems: "center",
+    padding: 10,
   },
   buttonIcon: {
     width: 20,
