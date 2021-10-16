@@ -1,9 +1,9 @@
 import React from "react";
-import { StatusBar, StyleSheet, View } from "react-native";
+import { StatusBar, StyleSheet, Text, View } from "react-native";
 import colors from "../../constants/colors";
-import { ScreenHeight, ScreenWidth } from "../../constants/Dimensions";
+import * as MyDimensions from "../../constants/Dimensions";
 
-export default Home = () => {
+const Home = () => {
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor={colors.blue} />
@@ -11,10 +11,13 @@ export default Home = () => {
   );
 };
 
+export default Home;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: ScreenHeight,
+    height: MyDimensions.ScreenHeight,
+    width: MyDimensions.ScreenWidth,
     backgroundColor: colors.blue,
   },
 });

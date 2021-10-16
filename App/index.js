@@ -1,13 +1,20 @@
 import React from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
+import { ScreenHeight } from "./constants/Dimensions";
 import Home from "./screens/Home";
+// import Option from "./screens/Options";
 
 export default () => {
-  return <Home />;
+  return (
+    <SafeAreaView style={styles.container}>
+      <Home />
+    </SafeAreaView>
+  );
 };
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 50,
+    flex: 1,
+    height: ScreenHeight - 30,
   },
 });
