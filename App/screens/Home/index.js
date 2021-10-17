@@ -1,23 +1,25 @@
+import { Entypo } from "@expo/vector-icons";
 import { format } from "date-fns";
 import React, { useEffect, useState } from "react";
 import {
   Alert,
   Image,
-  KeyboardAvoidingView,
   ScrollView,
   StatusBar,
   StyleSheet,
   Text,
   View,
   Keyboard,
+  TouchableOpacity,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { Button } from "../../components/Button";
 import { ConversionInput } from "../../components/ConversionInput";
 import colors from "../../constants/colors";
 import * as MyDimensions from "../../constants/Dimensions";
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const USD = "USD";
   const GBP = "GBP";
   const conversionVal = 0.845;
@@ -44,48 +46,59 @@ const Home = () => {
   }, []);
 
   return (
-    <KeyboardAwareScrollView style={styles.container}>
-      <View>
-        <StatusBar barStyle="light-content" backgroundColor={colors.blue} />
-        <ScrollView>
-          <View style={styles.logoContainer}>
-            <Image
-              source={require("../../assets/images/background.png")}
-              resizeMode="contain"
-              style={styles.logoBackground}
+    <SafeAreaView style={{ flex: 1 }}>
+      <KeyboardAwareScrollView style={styles.container}>
+        <View style={{ flex: 1 }}>
+          <StatusBar barStyle="light-content" backgroundColor={colors.blue} />
+          <TouchableOpacity
+            style={styles.optionsButton}
+            onPress={() => navigation.push("Options")}
+          >
+            <Entypo name="cog" size={24} color={colors.white} />
+          </TouchableOpacity>
+          <ScrollView>
+            <View style={styles.logoContainer}>
+              <Image
+                source={require("../../assets/images/background.png")}
+                resizeMode="contain"
+                style={styles.logoBackground}
+              />
+              <Image
+                source={require("../../assets/images/logo.png")}
+                resizeMode="contain"
+                style={styles.logo}
+              />
+            </View>
+            {/* Title */}
+            <Text style={styles.pageTitle}>Currency Converter</Text>
+            {/* Conversion inputs */}
+            <ConversionInput
+              text={USD}
+              onPress={() => Alert.alert("todo", "USD VALUE")}
+              onChangeText={(value) => console.log(value)}
             />
-            <Image
-              source={require("../../assets/images/logo.png")}
-              resizeMode="contain"
-              style={styles.logo}
+            <ConversionInput
+              text={GBP}
+              onPress={() => Alert.alert("todo", "GBP VALUE")}
+              onChangeText={(value) => console.log(value)}
+              editable={false}
             />
-          </View>
-          {/* Title */}
-          <Text style={styles.pageTitle}>Currency Converter</Text>
-          {/* Conversion inputs */}
-          <ConversionInput
-            text={USD}
-            onPress={() => Alert.alert("todo", "USD VALUE")}
-            onChangeText={(value) => console.log(value)}
-          />
-          <ConversionInput
-            text={GBP}
-            onPress={() => Alert.alert("todo", "GBP VALUE")}
-            onChangeText={(value) => console.log(value)}
-            editable={false}
-          />
-          <Text style={styles.conversionInfoText}>
-            {`1 ${USD} = ${conversionVal} ${GBP} as of ${format(
-              date,
-              "MMMM do, yyyy"
-            )}`}
-          </Text>
-          {/* Reverse currency button component */}
-          <Button text="Reverse currency" onPress={() => Alert.alert("Todo")} />
-        </ScrollView>
-        <View style={{ marginBottom: 15 }} />
-      </View>
-    </KeyboardAwareScrollView>
+            <Text style={styles.conversionInfoText}>
+              {`1 ${USD} = ${conversionVal} ${GBP} as of ${format(
+                date,
+                "MMMM do, yyyy"
+              )}`}
+            </Text>
+            {/* Reverse currency button component */}
+            <Button
+              text="Reverse currency"
+              onPress={() => Alert.alert("Todo")}
+            />
+          </ScrollView>
+          <View style={{ marginBottom: 15 }} />
+        </View>
+      </KeyboardAwareScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -124,5 +137,10 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     color: colors.white,
     textAlign: "center",
+  },
+  optionsButton: {
+    alignSelf: "flex-end",
+    marginHorizontal: 20,
+    marginVertical: 10,
   },
 });

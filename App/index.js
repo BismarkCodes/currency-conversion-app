@@ -1,20 +1,7 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, StatusBar } from "react-native";
+import { StyleSheet, StatusBar } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import Navigation from "./config/Navigation";
 import { ScreenHeight } from "./constants/Dimensions";
-import Home from "./screens/Home";
-// import Option from "./screens/Options";
 
-export default () => {
-  return (
-    <SafeAreaView style={styles.container}>
-      <Home />
-    </SafeAreaView>
-  );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    height: ScreenHeight - StatusBar.currentHeight,
-  },
-});
+export default () => <Navigation />;
