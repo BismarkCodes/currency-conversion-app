@@ -74,12 +74,12 @@ const Home = ({ navigation }) => {
             {/* Conversion inputs */}
             <ConversionInput
               text={USD}
-              onPress={() => Alert.alert("todo", "USD VALUE")}
+              onPress={() => navigation.push("Currency List")}
               onChangeText={(value) => console.log(value)}
             />
             <ConversionInput
               text={GBP}
-              onPress={() => Alert.alert("todo", "GBP VALUE")}
+              onPress={() => navigation.push("Currency List")}
               onChangeText={(value) => console.log(value)}
               editable={false}
             />
