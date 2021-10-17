@@ -20,8 +20,8 @@ import colors from "../../constants/colors";
 import * as MyDimensions from "../../constants/Dimensions";
 
 const Home = ({ navigation }) => {
-  const USD = "USD";
-  const GBP = "GBP";
+  const BaseCurrency = "USD";
+  const QuoteCurrency = "GBP";
   const conversionVal = 0.845;
   const date = new Date();
 
@@ -73,18 +73,28 @@ const Home = ({ navigation }) => {
             <Text style={styles.pageTitle}>Currency Converter</Text>
             {/* Conversion inputs */}
             <ConversionInput
-              text={USD}
-              onPress={() => navigation.push("Currency List")}
+              text={BaseCurrency}
+              onPress={() =>
+                navigation.push("Currency List", {
+                  title: "Base Currency",
+                  activeCurrency: BaseCurrency,
+                })
+              }
               onChangeText={(value) => console.log(value)}
             />
             <ConversionInput
-              text={GBP}
-              onPress={() => navigation.push("Currency List")}
+              text={QuoteCurrency}
+              onPress={() =>
+                navigation.push("Currency List", {
+                  title: "Quote Currency",
+                  activeCurrency: QuoteCurrency,
+                })
+              }
               onChangeText={(value) => console.log(value)}
               editable={false}
             />
             <Text style={styles.conversionInfoText}>
-              {`1 ${USD} = ${conversionVal} ${GBP} as of ${format(
+              {`1 ${BaseCurrency} = ${conversionVal} ${QuoteCurrency} as of ${format(
                 date,
                 "MMMM do, yyyy"
               )}`}

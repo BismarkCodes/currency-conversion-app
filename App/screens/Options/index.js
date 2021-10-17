@@ -22,7 +22,6 @@ export default () => {
           }
           onPress={() => alert("Themes")}
         />
-
         <RowSeperator />
 
         <RowItems
