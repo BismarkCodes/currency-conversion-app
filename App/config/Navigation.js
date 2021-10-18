@@ -13,6 +13,10 @@ import CurrencyList from "../screens/Currencies/CurrencyList";
 // importing constants
 import colors from "../constants/colors";
 import { Entypo } from "@expo/vector-icons";
+import {
+  horizontalAnimation,
+  verticalAnimation,
+} from "../constants/Animations/HorizontalScreenSlider";
 
 // creating instance of stack navigator
 const MainStack = createNativeStackNavigator();
