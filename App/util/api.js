@@ -27,6 +27,6 @@ export const api = (_path = "") => {
           [baseCurrency]: 1,
         },
       });
-    }, 500);
+    }, 2500);
   });
 };

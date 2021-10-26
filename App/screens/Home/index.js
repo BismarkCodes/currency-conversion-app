@@ -11,6 +11,7 @@ import {
   View,
   Keyboard,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -22,8 +23,14 @@ import { ConversionContext } from "../../util/ConversionContext";
 
 const Home = ({ navigation }) => {
   const [value, setValue] = useState("100");
-  const { BaseCurrency, QuoteCurrency, swapCurrencies, date, rates } =
-    useContext(ConversionContext);
+  const {
+    BaseCurrency,
+    QuoteCurrency,
+    isLoading,
+    swapCurrencies,
+    date,
+    rates,
+  } = useContext(ConversionContext);
 
   const conversionVal = rates[QuoteCurrency];
 
@@ -75,37 +82,51 @@ const Home = ({ navigation }) => {
             {/* Title */}
             <Text style={styles.pageTitle}>Currency Converter</Text>
             {/* Conversion inputs */}
-            <ConversionInput
-              value={value}
-              text={BaseCurrency}
-              onChangeText={(value) => setValue(value)}
-              onPress={() =>
-                navigation.push("Currency List", {
-                  title: "Base Currency",
-                  isBaseCurrency: true,
-                })
-              }
-            />
-            <ConversionInput
-              text={QuoteCurrency}
-              onPress={() =>
-                navigation.push("Currency List", {
-                  title: "Quote Currency",
-                  isBaseCurrency: false,
-                })
-              }
-              value={
-                value && `${(parseFloat(value) * conversionVal).toFixed(2)}`
-              }
-              editable={false}
-            />
-            <Text style={styles.conversionInfoText}>
-              {`1 ${BaseCurrency} = ${conversionVal} ${QuoteCurrency} as of ${
-                date && format(new Date(date), "MMMM do, yyyy")
-              }`}
-            </Text>
-            {/* Reverse currency button component */}
-            <Button text="Reverse currency" onPress={() => swapCurrencies()} />
+            {/* checking if api is loading data */}
+            {isLoading ? (
+              <ActivityIndicator
+                style={{ marginTop: 20 }}
+                color={colors.white}
+                size={24}
+              />
+            ) : (
+              <>
+                <ConversionInput
+                  value={value}
+                  text={BaseCurrency}
+                  onChangeText={(value) => setValue(value)}
+                  onPress={() =>
+                    navigation.push("Currency List", {
+                      title: "Base Currency",
+                      isBaseCurrency: true,
+                    })
+                  }
+                />
+                <ConversionInput
+                  text={QuoteCurrency}
+                  onPress={() =>
+                    navigation.push("Currency List", {
+                      title: "Quote Currency",
+                      isBaseCurrency: false,
+                    })
+                  }
+                  value={
+                    value && `${(parseFloat(value) * conversionVal).toFixed(2)}`
+                  }
+                  editable={false}
+                />
+                <Text style={styles.conversionInfoText}>
+                  {`1 ${BaseCurrency} = ${conversionVal} ${QuoteCurrency} as of ${
+                    date && format(new Date(date), "MMMM do, yyyy")
+                  }`}
+                </Text>
+                {/* Reverse currency button component */}
+                <Button
+                  text="Reverse currency"
+                  onPress={() => swapCurrencies()}
+                />
+              </>
+            )}
           </ScrollView>
           <View style={{ marginBottom: 15 }} />
         </View>

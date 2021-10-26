@@ -10,7 +10,9 @@ export const ConversionContextProvider = ({ children }) => {
   const [QuoteCurrency, setQuoteCurrency] = useState(QUOTE_CURRENCY);
   const [date, setDate] = useState();
   const [rates, setRates] = useState({});
+  const [isLoading, setisLoading] = useState(true);
   const setBaseCurrency = (currency) => {
+    setisLoading(true);
     // getting rates from api
     return api(`/latest?base=${currency}`)
       .then((response) => {
@@ -20,6 +22,9 @@ export const ConversionContextProvider = ({ children }) => {
       })
       .catch((e) => {
         console.log(e);
+      })
+      .finally(() => {
+        setisLoading(false);
       });
   };
 
@@ -35,6 +40,7 @@ export const ConversionContextProvider = ({ children }) => {
     setQuoteCurrency,
     date,
     rates,
+    isLoading,
   };
 
   useEffect(() => {
