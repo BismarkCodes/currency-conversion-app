@@ -20,10 +20,16 @@ import colors from "../../constants/colors";
 import * as MyDimensions from "../../constants/Dimensions";
 
 const Home = ({ navigation }) => {
-  const BaseCurrency = "USD";
-  const QuoteCurrency = "GBP";
+  const [BaseCurrency, setBaseCurrency] = useState("USD");
+  const [QuoteCurrency, setQuoteCurrency] = useState("GBP");
+  const [value, setValue] = useState("100");
   const conversionVal = 0.845;
   const date = new Date();
+
+  const swapCurrencies = () => {
+    setBaseCurrency(QuoteCurrency);
+    setQuoteCurrency(BaseCurrency);
+  };
 
   // states to control scrolling
   const [scrollable, setScrollable] = useState(false);
@@ -73,14 +79,15 @@ const Home = ({ navigation }) => {
             <Text style={styles.pageTitle}>Currency Converter</Text>
             {/* Conversion inputs */}
             <ConversionInput
+              value={value}
               text={BaseCurrency}
+              onChangeText={(value) => setValue(value)}
               onPress={() =>
                 navigation.push("Currency List", {
                   title: "Base Currency",
                   activeCurrency: BaseCurrency,
                 })
               }
-              onChangeText={(value) => console.log(value)}
             />
             <ConversionInput
               text={QuoteCurrency}
@@ -90,7 +97,9 @@ const Home = ({ navigation }) => {
                   activeCurrency: QuoteCurrency,
                 })
               }
-              onChangeText={(value) => console.log(value)}
+              value={
+                value && `${(parseFloat(value) * conversionVal).toFixed(2)}`
+              }
               editable={false}
             />
             <Text style={styles.conversionInfoText}>
@@ -100,10 +109,7 @@ const Home = ({ navigation }) => {
               )}`}
             </Text>
             {/* Reverse currency button component */}
-            <Button
-              text="Reverse currency"
-              onPress={() => Alert.alert("Todo")}
-            />
+            <Button text="Reverse currency" onPress={() => swapCurrencies()} />
           </ScrollView>
           <View style={{ marginBottom: 15 }} />
         </View>

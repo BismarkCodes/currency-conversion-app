@@ -16,7 +16,7 @@ import { Entypo } from "@expo/vector-icons";
 import {
   horizontalAnimation,
   verticalAnimation,
-} from "../constants/Animations/HorizontalScreenSlider";
+} from "../constants/ScreenSliderAnimation";
 
 // creating instance of stack navigator
 const MainStack = createNativeStackNavigator();
