@@ -86,6 +86,7 @@ const Home = ({ navigation }) => {
                 navigation.push("Currency List", {
                   title: "Base Currency",
                   activeCurrency: BaseCurrency,
+                  onChange: (currency) => setBaseCurrency(currency),
                 })
               }
             />
@@ -95,6 +96,7 @@ const Home = ({ navigation }) => {
                 navigation.push("Currency List", {
                   title: "Quote Currency",
                   activeCurrency: QuoteCurrency,
+                  onChange: (currency) => setQuoteCurrency(currency),
                 })
               }
               value={

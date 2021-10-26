@@ -24,7 +24,12 @@ export default ({ navigation, route = {} }) => {
           return (
             <RowItems
               text={item}
-              onPress={() => navigation.pop()}
+              onPress={() => {
+                if (params.onChange) {
+                  params.onChange(item);
+                }
+                navigation.pop();
+              }}
               rightIcon={
                 selected && (
                   <View style={styles.icon}>
