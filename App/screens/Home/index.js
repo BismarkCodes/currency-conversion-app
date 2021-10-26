@@ -1,6 +1,6 @@
 import { Entypo } from "@expo/vector-icons";
 import { format } from "date-fns";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   Alert,
   Image,
@@ -18,18 +18,19 @@ import { Button } from "../../components/Button";
 import { ConversionInput } from "../../components/ConversionInput";
 import colors from "../../constants/colors";
 import * as MyDimensions from "../../constants/Dimensions";
+import { ConversionContext } from "../../util/ConversionContext";
 
 const Home = ({ navigation }) => {
-  const [BaseCurrency, setBaseCurrency] = useState("USD");
-  const [QuoteCurrency, setQuoteCurrency] = useState("GBP");
   const [value, setValue] = useState("100");
   const conversionVal = 0.845;
   const date = new Date();
-
-  const swapCurrencies = () => {
-    setBaseCurrency(QuoteCurrency);
-    setQuoteCurrency(BaseCurrency);
-  };
+  const {
+    BaseCurrency,
+    QuoteCurrency,
+    swapCurrencies,
+    setBaseCurrency,
+    setQuoteCurrency,
+  } = useContext(ConversionContext);
 
   // states to control scrolling
   const [scrollable, setScrollable] = useState(false);
@@ -51,6 +52,7 @@ const Home = ({ navigation }) => {
     };
   }, []);
 
+  // return null;
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <KeyboardAwareScrollView style={styles.container}>

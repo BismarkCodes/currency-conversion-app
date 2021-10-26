@@ -17,6 +17,7 @@ import {
   horizontalAnimation,
   verticalAnimation,
 } from "../constants/ScreenSliderAnimation";
+import { ConversionContextProvider } from "../util/ConversionContext";
 
 // creating instance of stack navigator
 const MainStack = createNativeStackNavigator();
@@ -66,6 +67,8 @@ const ModalStackScreen = () => (
 // exporting navigation
 export default () => (
   <NavigationContainer>
-    <ModalStackScreen />
+    <ConversionContextProvider>
+      <ModalStackScreen />
+    </ConversionContextProvider>
   </NavigationContainer>
 );
