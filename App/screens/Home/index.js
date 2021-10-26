@@ -22,10 +22,10 @@ import { ConversionContext } from "../../util/ConversionContext";
 
 const Home = ({ navigation }) => {
   const [value, setValue] = useState("100");
-  const conversionVal = 0.845;
-  const date = new Date();
-  const { BaseCurrency, QuoteCurrency, swapCurrencies } =
+  const { BaseCurrency, QuoteCurrency, swapCurrencies, date, rates } =
     useContext(ConversionContext);
+
+  const conversionVal = rates[QuoteCurrency];
 
   // states to control scrolling
   const [scrollable, setScrollable] = useState(false);
@@ -100,10 +100,9 @@ const Home = ({ navigation }) => {
               editable={false}
             />
             <Text style={styles.conversionInfoText}>
-              {`1 ${BaseCurrency} = ${conversionVal} ${QuoteCurrency} as of ${format(
-                date,
-                "MMMM do, yyyy"
-              )}`}
+              {`1 ${BaseCurrency} = ${conversionVal} ${QuoteCurrency} as of ${
+                date && format(new Date(date), "MMMM do, yyyy")
+              }`}
             </Text>
             {/* Reverse currency button component */}
             <Button text="Reverse currency" onPress={() => swapCurrencies()} />
