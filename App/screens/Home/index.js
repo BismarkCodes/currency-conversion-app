@@ -24,13 +24,8 @@ const Home = ({ navigation }) => {
   const [value, setValue] = useState("100");
   const conversionVal = 0.845;
   const date = new Date();
-  const {
-    BaseCurrency,
-    QuoteCurrency,
-    swapCurrencies,
-    setBaseCurrency,
-    setQuoteCurrency,
-  } = useContext(ConversionContext);
+  const { BaseCurrency, QuoteCurrency, swapCurrencies } =
+    useContext(ConversionContext);
 
   // states to control scrolling
   const [scrollable, setScrollable] = useState(false);
@@ -87,8 +82,7 @@ const Home = ({ navigation }) => {
               onPress={() =>
                 navigation.push("Currency List", {
                   title: "Base Currency",
-                  activeCurrency: BaseCurrency,
-                  onChange: (currency) => setBaseCurrency(currency),
+                  isBaseCurrency: true,
                 })
               }
             />
@@ -97,8 +91,7 @@ const Home = ({ navigation }) => {
               onPress={() =>
                 navigation.push("Currency List", {
                   title: "Quote Currency",
-                  activeCurrency: QuoteCurrency,
-                  onChange: (currency) => setQuoteCurrency(currency),
+                  isBaseCurrency: false,
                 })
               }
               value={
