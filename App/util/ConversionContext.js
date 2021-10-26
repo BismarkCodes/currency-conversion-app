@@ -1,11 +1,13 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { api } from "./api";
 
 export const ConversionContext = createContext();
 
+const BASE_CURRENCY = "USD";
+const QUOTE_CURRENCY = "GBP";
 export const ConversionContextProvider = ({ children }) => {
-  const [BaseCurrency, _setBaseCurrency] = useState("USD");
-  const [QuoteCurrency, setQuoteCurrency] = useState("GBP");
+  const [BaseCurrency, _setBaseCurrency] = useState(BASE_CURRENCY);
+  const [QuoteCurrency, setQuoteCurrency] = useState(QUOTE_CURRENCY);
   const [date, setDate] = useState();
   const [rates, setRates] = useState({});
   const setBaseCurrency = (currency) => {
@@ -34,6 +36,10 @@ export const ConversionContextProvider = ({ children }) => {
     date,
     rates,
   };
+
+  useEffect(() => {
+    setBaseCurrency(BASE_CURRENCY);
+  }, []);
   return (
     <ConversionContext.Provider value={contextValue}>
       {children}
