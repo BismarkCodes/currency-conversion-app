@@ -9,6 +9,7 @@ import currencies from "../../data/currencies.json";
 import { RowItems, RowSeperator } from "../../components/RowItems.js";
 import { Entypo } from "@expo/vector-icons";
 import { ConversionContext } from "../../util/ConversionContext";
+import SearchInput from "../../components/SearchInput";
 
 export default ({ navigation, route = {} }) => {
   const insets = useSafeAreaInsets();
@@ -19,8 +20,9 @@ export default ({ navigation, route = {} }) => {
   return (
     <SafeAreaView style={{ backgroundColor: colors.white }}>
       <StatusBar barStyle="dark-content" backgroundColor={colors.white} />
-
+      <SearchInput />
       <FlatList
+        style={{ marginTop: 15 }}
         data={currencies}
         renderItem={({ item }) => {
           let selected = false;
