@@ -36,6 +36,7 @@ const Home = ({ navigation }) => {
 
   // states to control scrolling
   const [scrollable, setScrollable] = useState(false);
+  const [data, setdata] = useState();
 
   useEffect(() => {
     const showListener = Keyboard.addListener("keyboardDidShow", (event) => {
@@ -59,6 +60,7 @@ const Home = ({ navigation }) => {
     <SafeAreaView style={{ flex: 1 }}>
       <KeyboardAwareScrollView style={styles.container}>
         <View style={{ flex: 1 }}>
+          {console.log(data)}
           <StatusBar barStyle="light-content" backgroundColor={colors.blue} />
           <TouchableOpacity
             style={styles.optionsButton}

@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
+import { Alert } from "react-native";
 import { api } from "./api";
 
 export const ConversionContext = createContext();
@@ -22,6 +23,7 @@ export const ConversionContextProvider = ({ children }) => {
       })
       .catch((e) => {
         console.log(e);
+        Alert.alert("Sorry, something's not right.", e.message);
       })
       .finally(() => {
         setisLoading(false);

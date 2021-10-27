@@ -7,7 +7,7 @@ import { api } from "./util/api";
 
 api("/latest?base=USD")
   .then((response) => {
-    console.log(response);
+    // console.log(response);
   })
   .catch((e) => {
     console.log(e);
